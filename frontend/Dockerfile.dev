@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY ./package*.json ./
+
+ENV NODE_ENV=development
+
+RUN npm i -D
+RUN npm install --only=dev
+
+USER root
+RUN chown -R node:node /app/node_modules/
+RUN mkdir /app/.next
+RUN chown -R node:node /app/.next/
+USER node
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+CMD [ "npm", "run", "dev" ]

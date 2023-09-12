@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/app
+    ports:
+      - 8001:8001
+    networks:
+      - postgres_redis_global
+      - atomsgame
+
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+    environment:
+      - PROXY=http://nginx
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - 3000:3000
+    networks:
+      - postgres_redis_global
+      - atomsgame
+
+  nginx:
+    build:
+      context: ./proxy
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - atomsgame
+
+networks:
+  atomsgame:
+    name: atomsgame
+    driver: bridge
+
+  postgres_redis_global:
+    name: postgres_redis_global
+    external: true

@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      - DEBUG
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      - DEBUG
+
+      - PROXY
