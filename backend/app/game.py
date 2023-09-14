@@ -1,5 +1,7 @@
 from enum import Enum
 
+from app.model.game import Coord as CoordModel
+
 
 class Coord:
     x: int
@@ -14,6 +16,10 @@ class Coord:
 
     def __repr__(self) -> str:
         return f"Coord: ({self.x}, {self.y})"
+
+    @classmethod
+    def from_model(cls, model: CoordModel) -> "Coord":
+        return cls(model.x, model.y)
 
 
 class Direction(Enum):
@@ -73,6 +79,9 @@ Game:
     right_min = {self._right_min_intersection}
     right_max = {self._right_max_intersection}
 """
+
+    def set_atoms(self, atoms: list[Coord]):
+        self.atoms = sorted(atoms, key=lambda k: (k.x, k.y))
 
     def _get_first_direction(self, n: int) -> Direction:
         if n >= self._top_min_intersection and n <= self._top_max_intersection:

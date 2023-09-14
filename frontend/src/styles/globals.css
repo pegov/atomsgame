@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+	font-family: Verdana, sans-serif;
+	background-color: #6AA;
+}
+
+.board {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.board-inner {
+	display: flex;
+	flex-direction: column;
+	width: 75vh;
+	margin: 0 auto;
+	height: 75vh;
+}
+
+.row {
+	display: flex;
+	flex: auto;
+	flex-direction: row;
+}
+
+.cell {
+	flex: auto;
+	position: relative;
+	background-color: #3A3;
+	border: 3px solid #FAF;
+}
+
+.indicator {
+	position: absolute;
+	min-width: 16px;
+	min-height: 16px;
+}
+
+.atom {
+	--atom-size: 100px;
+	--atom-size-half: calc(var(--atom-size) / 2);
+	position: absolute;
+	background-color: black;
+	width: var(--atom-size);
+	height: var(--atom-size);
+	border-radius: 50%;
+	top: calc(50% - var(--atom-size-half)); 
+	left: calc(50% - var(--atom-size-half)); 
+}
+
+/* top left 1 */
+.row:first-child .cell:first-child .indicator:first-child {
+	top: -35px;
+	left: -5px;
+}
+
+/* top left 2 */
+.row:first-child .cell:first-child .indicator:nth-child(2) {
+	top: -10px;
+	left: -40%;
+}
+
+/* top without corners */
+.row:first-child .cell:not(:first-child):not(:last-child) .indicator {
+	top: -35px;
+	left: -5px;
+}
+
+/* top right 1 */
+.row:first-child .cell:last-child .indicator:first-child {
+	top: -35px;
+	left: -10px;
+}
+
+/* top right 2 */
+.row:first-child .cell:last-child .indicator:nth-child(2) {
+	top: -35px;
+	right: -10px;
+}
+
+/* top right 2 */
+.row:first-child .cell:last-child .indicator:nth-child(3) {
+	top: -10px;
+	right: -40%;
+}
+
+.row:not(:first-child):not(:last-child) .cell:first-child .indicator {
+	top: -15px;
+	left: -40%;
+}
+
+.row:not(:first-child):not(:last-child) .cell:last-child .indicator {
+	top: -15px;
+	right: -40%;
+}
+
+/* bottom left 1 */
+.row:last-child .cell:first-child .indicator:first-child {
+	bottom: -35px;
+	left: -10px;
+}
+
+/* bottom left 2 */
+.row:last-child .cell:first-child .indicator:nth-child(2) {
+	bottom: -10px;
+	left: -40%;
+}
+
+/* bottom left 3 */
+.row:last-child .cell:first-child .indicator:nth-child(3) {
+	top: -15px;
+	left: -40%;
+}
+
+/* bottom without corners */
+.row:last-child .cell:not(:first-child):not(:last-child) .indicator {
+	bottom: -35px;
+	left: -10px;
+}
+
+/* bottom right 1 */
+.row:last-child .cell:last-child .indicator:first-child {
+	top: -15px;
+	right: -40%;
+}
+
+/* bottom right 2 */
+.row:last-child .cell:last-child .indicator:nth-child(2) {
+	bottom: -10px;
+	right: -40%;
+}
+
+/* bottom right 3 */
+.row:last-child .cell:last-child .indicator:nth-child(3) {
+	bottom: -35px;
+	right: -5px;
+}
+
+/* bottom right 4 */
+.row:last-child .cell:last-child .indicator:nth-child(4) {
+	bottom: -35px;
+	left: -15px;
+}
