@@ -11,6 +11,7 @@ from app.model.game import (
     ClientMessage,
     ScanRequest,
     ScanResponse,
+    Start,
     SuggestRequest,
     SuggestResponse,
 )
@@ -49,7 +50,18 @@ async def games_ws_main(
             client_message = ClientMessage(message=orjson.loads(data))
 
             t = client_message.message.type
-            if t == "scan":
+            if t == "start":
+                start = cast(Start, client_message.message)
+                size_x = start.settings.size_x
+                size_y = start.settings.size_y
+                atoms_count = start.settings.atoms_count
+                board = Board(
+                    size_x,
+                    size_y,
+                    random_atoms(size_x, size_y, atoms_count),
+                )
+                await ws.send_text(start.model_dump_json(by_alias=True))
+            elif t == "scan":
                 scan_request = cast(ScanRequest, client_message.message)
                 output = board.scan_intersection(scan_request.input)
                 scan_response = ScanResponse(

@@ -13,23 +13,44 @@ export interface SuggestRequest {
 	coords: Coord[]
 }
 
-export type ClientMessage = ScanRequest | SuggestRequest
+export interface StartRequest {
+	type: "start"
+	settings: Settings
+}
 
 
-interface ScanResponse {
+export type ClientMessage =
+	ScanRequest
+	| SuggestRequest
+	| StartRequest
+
+
+export interface ScanResponse {
 	type: "scan"
 	input: number
 	output: number
 }
 
-interface SuggestResponse {
+export interface SuggestResponse {
 	type: "suggest"
 	success: boolean
 }
 
-interface ErrorResponse {
+export interface Settings {
+	sizeX: number
+	sizeY: number
+	atomsCount: number
+}
+
+export type StartResponse = StartRequest
+
+export interface ErrorResponse {
 	type: "error"
 	error: "TODO"
 }
 
-export type ServerMessage = ErrorResponse | ScanResponse | SuggestResponse
+export type ServerMessage =
+	ErrorResponse
+	| ScanResponse
+	| SuggestResponse
+	| StartResponse

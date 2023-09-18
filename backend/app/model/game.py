@@ -30,8 +30,15 @@ class SuggestRequest(DefaultModel):
     coords: list[Coord]
 
 
+class Start(DefaultModel):
+    type: Literal["start"]
+    settings: GameSettings
+
+
 class ClientMessage(DefaultModel):
-    message: Union[ScanRequest, SuggestRequest] = Field(..., discriminator="type")
+    message: Union[ScanRequest, SuggestRequest, Start] = Field(
+        ..., discriminator="type"
+    )
 
 
 class ScanResponse(DefaultModel):

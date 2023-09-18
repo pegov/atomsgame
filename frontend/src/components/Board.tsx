@@ -2,10 +2,11 @@ import { FC } from "react"
 
 import Indicator from "@/components/Indicator"
 
-import { type Coord } from "@/types/game"
+import { type Coord, type Settings } from "@/types/game"
 
 
 interface Props {
+  settings: Settings
   scanPairs: number[][]
   scan: (n: number) => void
   suggestion: Coord[]
@@ -13,7 +14,7 @@ interface Props {
 }
 
 
-const Board: FC<Props> = ({ scanPairs, scan, suggestion, toggleAtom }) => {
+const Board: FC<Props> = ({ settings, scanPairs, scan, suggestion, toggleAtom }) => {
   const buildBoard = (sizeX: number, sizeY: number): number[][][] => {
     const n = sizeX * 2 + sizeY * 2 + 4
 
@@ -102,7 +103,7 @@ const Board: FC<Props> = ({ scanPairs, scan, suggestion, toggleAtom }) => {
     return rows
   }
 
-  const rows = buildBoard(4, 4)
+  const rows = buildBoard(settings.sizeX, settings.sizeY)
 
   return (
     <div className="board">

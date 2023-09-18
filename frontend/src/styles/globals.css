@@ -8,13 +8,36 @@ body {
 	background-color: #6AA;
 }
 
+.menu-link {
+	padding: 4px;
+	background-color: #3bce3b;
+	border: #FAF 1px solid;
+}
+
+.menu-link:hover {
+	background-color: #2d7f2d;
+}
+
+.button-custom {
+	padding: 4px;
+	background-color: #3bce3b;
+	border: #FAF 1px solid;
+}
+
+.button-custom:hover {
+	background-color: #2d7f2d;
+}
+
+.button-custom:disabled {
+	background-color: #849984;
+}
+
 .board {
-	width: 100vw;
-	height: 100vh;
+	max-width: 100vw;
+	max-height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 50px;
 }
 
 .board-inner {
