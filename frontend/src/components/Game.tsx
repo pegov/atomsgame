@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 
 import Board from "./Board"
+import ErrorAlert from "./ErrorAlert"
 
 import {
   Coord,
@@ -26,6 +27,7 @@ const Game = () => {
   const [scanPairs, setScanPairs] = useState<number[][]>([])
   const [suggestion, setSuggestion] = useState<Coord[]>([])
   const [success, setSuccess] = useState<boolean | undefined>()
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   useEffect(() => {
     if (!wsRef.current) {
@@ -55,15 +57,18 @@ const Game = () => {
         setScanPairs([])
         setSuggestion([])
         setSuccess(undefined)
+        setErrorMessage(null)
         setSettings(message.settings)
         setRoute(Route.Game)
         break
       }
       case "scan": {
+        setErrorMessage(null)
         setScanPairs(v => [...v, [message.input, message.output]])
         break
       }
       case "suggest": {
+        setErrorMessage(null)
         setSuccess(message.success)
         if (message.success) {
           if (successTimeoutId.current) {
@@ -83,7 +88,7 @@ const Game = () => {
         break
       }
       case "error": {
-        // TODO:
+        setErrorMessage(message.error)
         break
       }
       default:
@@ -146,7 +151,9 @@ const Game = () => {
     return (
       <>
         <div className="my-1">
-          <label className="block" htmlFor="x">Размер по горизонтали</label>
+          <label className="block" htmlFor="x">
+            Размер по горизонтали
+          </label>
           <input
             type="number"
             name="x"
@@ -161,7 +168,9 @@ const Game = () => {
           />
         </div>
         <div className="my-1">
-          <label className="block" htmlFor="y">Размер по вертикали</label>
+          <label className="block" htmlFor="y">
+            Размер по вертикали
+          </label>
           <input
             type="number"
             name="y"
@@ -176,7 +185,9 @@ const Game = () => {
           />
         </div>
         <div className="my-1">
-          <label className="block" htmlFor="count">Число атомов</label>
+          <label className="block" htmlFor="count">
+            Число атомов
+          </label>
           <input
             type="number"
             name="count"
@@ -191,8 +202,11 @@ const Game = () => {
           />
         </div>
         <div className="mt-4">
-          <button className="button-custom w-full" onClick={startNewGame}>СТАРТ</button>
+          <button className="button-custom w-full" onClick={startNewGame}>
+            СТАРТ
+          </button>
         </div>
+        {errorMessage && <ErrorAlert errorMessage={errorMessage} />}
       </>
     )
   }
@@ -235,6 +249,7 @@ const Game = () => {
               НАСТРОЙКИ
             </button>
           </div>
+          {errorMessage && <ErrorAlert errorMessage={errorMessage} />}
         </div>
       </>
     )

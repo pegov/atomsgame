@@ -50,3 +50,8 @@ class ScanResponse(DefaultModel):
 class SuggestResponse(DefaultModel):
     type: Literal["suggest"]
     success: bool
+
+
+class ErrorResponse(DefaultModel):
+    type: Literal["error"]
+    error: str

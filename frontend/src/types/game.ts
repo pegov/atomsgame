@@ -46,7 +46,7 @@ export type StartResponse = StartRequest
 
 export interface ErrorResponse {
 	type: "error"
-	error: "TODO"
+	error: string
 }
 
 export type ServerMessage =
