@@ -13,3 +13,6 @@ services:
       - DEBUG
 
       - PROXY
+
+      - ORIGIN_HTTP
+      - ORIGIN_WS

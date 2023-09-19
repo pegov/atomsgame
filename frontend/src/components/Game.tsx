@@ -29,7 +29,7 @@ const Game = () => {
 
   useEffect(() => {
     if (!wsRef.current) {
-      wsRef.current = new WebSocket("ws://127.0.0.1/ws/games")
+      wsRef.current = new WebSocket(`${process.env.ORIGIN_WS}/ws/games`)
       const ws = wsRef.current
       ws.onopen = () => {
         console.log("ws open event")

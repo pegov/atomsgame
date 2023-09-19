@@ -18,6 +18,14 @@ const nextConfig = {
         aggregateTimeout: 300,
       },
     }
+  },
+  env: {
+    DEBUG: process.env.DEBUG === "1",
+
+    PROXY: process.env.PROXY,
+
+    ORIGIN_HTTP: process.env.ORIGIN_HTTP,
+    ORIGIN_WS: process.env.ORIGIN_WS,
   }
 }
 
