@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  backend:
+    restart: always
+    build:
+      dockerfile: Dockerfile.prod
+    volumes:
+      - /var/log/atomsgame:/var/log/atomsgame
+    network_mode: host
+
+  frontend:
+    restart: always
+    build:
+      dockerfile: Dockerfile.prod
+    network_mode: host
