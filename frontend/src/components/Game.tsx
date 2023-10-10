@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
 import Board from "./Board"
@@ -248,6 +249,9 @@ const Game = () => {
             >
               НАСТРОЙКИ
             </button>
+            <div className="menu-link my-2 mx-2">
+              <Link href="/tutorial">Инструкция</Link>
+            </div>
           </div>
           {errorMessage && <ErrorAlert errorMessage={errorMessage} />}
         </div>

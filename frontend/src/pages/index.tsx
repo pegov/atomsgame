@@ -9,6 +9,9 @@ export default function Home() {
       <div className="my-2 menu-link">
         <Link href="/singleplayer">Одиночная игра</Link>
       </div>
+      <div className="my-2 menu-link">
+        <Link href="/tutorial">Инструкция</Link>
+      </div>
     </main>
   )
 }

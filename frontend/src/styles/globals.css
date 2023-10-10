@@ -8,6 +8,42 @@ body {
 	background-color: #6AA;
 }
 
+.tutorial-block {
+	padding: 4px;
+	background-color: #2d7f2d;
+	color: white;
+}
+
+.tutorial-p::before {
+	content: "\25CF \0020";
+}
+
+.tutorial-image {
+	width: 100%;
+	height: auto;
+}
+
+@media (min-width: 360px) {
+	.tutorial-image {
+		width: 100%;
+	}
+}
+@media (min-width: 768px) {
+	.tutorial-image {
+		width: 700px;
+	}
+}
+@media (min-width: 1024px) {
+	.tutorial-image {
+		width: 900px;
+	}
+}
+@media (min-width: 1144px) {
+	.tutorial-image {
+		width: 1040px;
+	}
+}
+
 .menu-link {
 	padding: 4px;
 	background-color: #3bce3b;
