@@ -1,11 +1,18 @@
+import Head from "next/head"
+
 import Tutorial from "@/components/Tutorial"
 
 
 export default function TutorialPage() {
   return (
-    <main>
-      <Tutorial />
-    </main>
+    <>
+      <Head>
+        <title>Инструкция</title>
+      </Head>
+      <main>
+        <Tutorial />
+      </main>
+    </>
   )
 }
 
