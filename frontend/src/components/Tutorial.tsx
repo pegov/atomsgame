@@ -29,7 +29,7 @@ const Example: FC<Props> = ({ text, imgSrc }) => {
 const Tutorial = () => {
   return (
     <>
-      <div className="w-full mt-4" role="alert">
+      <div className="w-full" role="alert">
         <div className="text-xl tutorial-block">
           <h1 className="text-2xl text-center">Инструкция</h1>
           <p className="tutorial-p">Поле состоит из клеток и пересечений.</p>
