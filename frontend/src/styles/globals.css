@@ -74,6 +74,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 100px;
 }
 
 .board-inner {
@@ -111,8 +112,8 @@ body {
 	width: var(--atom-size);
 	height: var(--atom-size);
 	border-radius: 50%;
-	top: calc(50% - var(--atom-size-half)); 
-	left: calc(50% - var(--atom-size-half)); 
+	top: calc(50% - var(--atom-size-half));
+	left: calc(50% - var(--atom-size-half));
 }
 
 /* top left 1 */
