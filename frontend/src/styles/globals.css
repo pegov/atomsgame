@@ -105,7 +105,7 @@ body {
 }
 
 .atom {
-	--atom-size: 100px;
+	--atom-size: min(100px, 15vw);
 	--atom-size-half: calc(var(--atom-size) / 2);
 	position: absolute;
 	background-color: black;
