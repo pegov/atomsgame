@@ -3,7 +3,7 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 FROM node:18-alpine as builder
 WORKDIR /app
@@ -24,11 +24,11 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --chown=nextjs:nodejs ./.env ./
+# COPY --chown=nextjs:nodejs ./.env ./
 
 USER nextjs
 
-ENV HOSTNAME "127.0.0.1"
+ENV HOSTNAME "0.0.0.0"
 ENV PORT 3000
 ENV NEXT_TELEMETRY_DISABLED 1
 

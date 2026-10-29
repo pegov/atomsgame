@@ -13,7 +13,7 @@ RUN pip install poetry
 COPY pyproject.toml ./
 COPY poetry.lock ./
 
-RUN poetry install --without dev
+RUN poetry install --without dev --no-root
 
 COPY . .
 
@@ -22,7 +22,7 @@ ENV PYTHONPATH=./app
 CMD [ "poetry", "run", "gunicorn", \
 "-w", "2", \
 "-k", "uvicorn.workers.UvicornWorker", \
-"--bind", "127.0.0.1:8001", \
+"--bind", "0.0.0.0:8001", \
 "--access-logfile", "/var/log/atomsgame/access.log", \
 "--log-file", "/var/log/atomsgame/error.log", \
 "--max-requests", "8192", \
