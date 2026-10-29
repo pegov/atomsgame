@@ -32,7 +32,8 @@ const Game = () => {
 
   useEffect(() => {
     if (!wsRef.current) {
-      wsRef.current = new WebSocket(`${process.env.ORIGIN_WS}/ws/games`)
+      const { protocol, host } = window.location
+      wsRef.current = new WebSocket(`${protocol === "https:" ? "wss:" : "ws:"}//${host}/ws/games`)
       const ws = wsRef.current
       ws.onopen = () => {
         console.log("ws open event")

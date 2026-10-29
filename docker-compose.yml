@@ -9,10 +9,3 @@ services:
   frontend:
     build:
       context: ./frontend
-    environment:
-      - DEBUG
-
-      - PROXY
-
-      - ORIGIN_HTTP
-      - ORIGIN_WS
